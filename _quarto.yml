@@ -12,6 +12,8 @@ website:
     left:
       - href: index.qmd
         text: 地図
+      - href: tech-stack.qmd
+        text: 技術詳細
       - href: data/public/trees.csv
         text: CSV
       - href: data/public/trees.geojson
@@ -20,10 +22,10 @@ website:
 format:
   html:
     theme: cosmo
+    lang: ja
     css: assets/styles.css
     toc: false
     page-layout: full
 
 execute:
   freeze: auto
-

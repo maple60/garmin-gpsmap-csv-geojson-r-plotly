@@ -95,7 +95,15 @@
         weight: 1.5,
         fillColor: colorForFeature(feature, index),
         fillOpacity: 0.9,
-      }).bindPopup(popupHtml(feature));
+      }).bindPopup(popupHtml(feature), {
+        autoPan: false,
+        closeButton: true,
+      });
+
+      marker.on("mouseover", () => marker.openPopup());
+      marker.on("mouseout", () => marker.closePopup());
+      marker.on("focus", () => marker.openPopup());
+      marker.on("blur", () => marker.closePopup());
 
       marker.addTo(state.layer);
       state.markers.set(feature.properties.tree_id, marker);

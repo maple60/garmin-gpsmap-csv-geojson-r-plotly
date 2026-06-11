@@ -10,6 +10,41 @@ Garmin GPSMAPで取得した樹木の位置と樹種名を、Google Sheetsで管
 4. GitHub repository secrets にCSV URLを登録します。
 5. GitHub ActionsがCSVを検証し、`data/public/trees.csv` と `data/public/trees.geojson` を生成してGitHub Pagesへ公開します。
 
+## データを追加・更新する方法
+
+通常の更新はGoogle Sheetsだけで行います。GitHub上のCSVやGeoJSONは生成物なので、直接編集しません。
+
+1. Garmin GPSMAPで取得した緯度・経度をWGS84の10進度にそろえます。
+2. Google Sheetsの `trees` シートに新しい行を追加します。
+3. `tree_id`, `lat`, `lon`, `species_jp`, `survey_date`, `publish` を必ず入力します。
+4. まだ確認中の個体は `publish` を `FALSE` にしておきます。
+5. 公開してよい状態になったら `publish` を `TRUE` にします。
+6. GitHub Actionsの `Publish tree map` を手動実行するか、定期実行を待ちます。
+7. 公開サイト、CSV、GeoJSONに反映されたことを確認します。
+
+手動実行する場合は、GitHubの `Actions` タブで `Publish tree map` を開き、`Run workflow` を押します。
+
+## 既存データを修正する方法
+
+- 樹種名、学名、調査日、公開メモを直す場合は、Google Sheetsの該当行を編集します。
+- 座標を修正する場合は、`lat` と `lon` をWGS84の10進度で上書きします。
+- 一時的に非公開にしたい場合は、行を削除せず `publish` を `FALSE` にします。
+- 完全に削除したい場合だけ、Google Sheetsから行を削除します。
+
+`tree_id` は公開済みURLやGeoJSON利用者が参照する可能性があるため、原則として変更しません。
+
+## 更新時にビルドが失敗した場合
+
+GitHub Actionsが失敗した場合は、まず `Actions > Publish tree map` のログを確認します。よくある原因は以下です。
+
+- `tree_id` が重複している。
+- `lat` / `lon` に数値以外の値が入っている。
+- `species_jp` が空欄になっている。
+- `survey_date` が `YYYY-MM-DD` ではない。
+- キャンパス範囲チェックを設定している場合に、座標が範囲外になっている。
+
+修正後に `Run workflow` で再実行してください。
+
 ## `trees` シート
 
 必須列は以下です。列名は完全一致にしてください。
@@ -74,4 +109,3 @@ quarto render
 - `data/public/trees.geojson`
 
 これらは手で編集せず、`scripts/build_data.R` で生成します。
-
