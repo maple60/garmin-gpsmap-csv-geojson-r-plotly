@@ -97,8 +97,11 @@
         fillColor: colorForFeature(feature, index),
         fillOpacity: 0.9,
       }).bindPopup(popupHtml(feature), {
-        autoPan: false,
+        autoPan: true,
+        autoPanPadding: L.point(24, 24),
         closeButton: true,
+        keepInView: true,
+        maxWidth: 280,
       });
 
       marker.on("mouseover", () => marker.openPopup());
