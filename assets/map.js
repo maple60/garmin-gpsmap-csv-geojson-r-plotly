@@ -90,6 +90,7 @@
       const coords = feature.geometry.coordinates;
       const latlng = [coords[1], coords[0]];
       const marker = L.circleMarker(latlng, {
+        interactive: true,
         radius: 7,
         color: "#ffffff",
         weight: 1.5,
