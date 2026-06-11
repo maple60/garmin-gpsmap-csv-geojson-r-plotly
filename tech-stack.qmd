@@ -23,6 +23,22 @@ flowchart LR
 
 `trees` シートは1行1個体の樹木データ、`species` シートは樹種ごとの補助情報です。GitHub ActionsがSheets由来のCSVを読み込み、公開対象行だけをCSVとGeoJSONへ変換します。
 
+## 現地調査から入力まで
+
+データ追加は、現地でGPS座標と樹種情報を記録し、Google Sheetsの `trees` シートに1行追加する流れです。GitHub上のCSVやGeoJSONは生成物なので、手で編集しません。
+
+調査前には、Garmin GPSMAPの測地系をWGS84にし、座標を10進度で記録できる状態にします。あわせて、その日の記録者名、個体IDの採番ルール、未確定データを `publish = FALSE` にする運用を確認します。
+
+現地では1本の木ごとに、個体ID、緯度、経度、樹種名、調査日、記録者、GPS精度、公開メモを記録します。樹種が未確定の場合や座標に不安がある場合は、Google Sheetsには入力しても `publish` を `FALSE` にしておき、確認後に `TRUE` へ変更します。
+
+`trees` シートへの入力例は以下です。
+
+| tree_id | lat | lon | species_jp | scientific_name | survey_date | observer | accuracy_m | publish | note_public |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| T-0125 | 35.71020 | 139.76120 | イチョウ | Ginkgo biloba | 2026-06-11 | field-team | 3 | TRUE | 正門付近 |
+
+Sheets更新後は、GitHub Actionsの `Publish tree map` を手動実行するか、定期実行を待ちます。成功すると、公開サイト、CSV、GeoJSONが同じタイミングで更新されます。
+
 ## 検証ルール
 
 Rスクリプトは公開前に以下を確認します。
