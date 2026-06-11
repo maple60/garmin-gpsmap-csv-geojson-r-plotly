@@ -1,0 +1,11 @@
+{
+  "type":"FeatureCollection",
+  "properties":{"generated_at":"2026-06-11T06:03:30Z","row_count":4,"source":"data/source/sample_trees.csv"},
+  "features":[
+    {"type":"Feature","properties":{"tree_id":"T-0001","species_jp":"イチョウ","scientific_name":"Ginkgo biloba","survey_date":"2026-06-11","observer":"field-team","accuracy_m":3,"publish":true,"note_public":"正門付近","family_jp":"イチョウ科","marker_color":"#c28b19"},"geometry":{"type":"Point","coordinates":[139.7612,35.7102]}},
+    {"type":"Feature","properties":{"tree_id":"T-0002","species_jp":"ソメイヨシノ","scientific_name":"Cerasus x yedoensis","survey_date":"2026-06-11","observer":"field-team","accuracy_m":4,"publish":true,"note_public":"講義棟前","family_jp":"バラ科","marker_color":"#d95f8a"},"geometry":{"type":"Point","coordinates":[139.76172,35.71048]}},
+    {"type":"Feature","properties":{"tree_id":"T-0003","species_jp":"クスノキ","scientific_name":"Cinnamomum camphora","survey_date":"2026-06-11","observer":"field-team","accuracy_m":5,"publish":true,"note_public":"芝生広場の南側","family_jp":"クスノキ科","marker_color":"#1f7a5a"},"geometry":{"type":"Point","coordinates":[139.76205,35.70996]}},
+    {"type":"Feature","properties":{"tree_id":"T-0004","species_jp":"ケヤキ","scientific_name":"Zelkova serrata","survey_date":"2026-06-11","observer":"field-team","accuracy_m":4,"publish":true,"note_public":"図書館西側","family_jp":"ニレ科","marker_color":"#7a5a2a"},"geometry":{"type":"Point","coordinates":[139.76092,35.71072]}}
+  ]
+}
+

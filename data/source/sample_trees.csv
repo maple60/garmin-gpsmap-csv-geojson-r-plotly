@@ -1,0 +1,7 @@
+tree_id,lat,lon,species_jp,scientific_name,survey_date,observer,accuracy_m,publish,note_public
+T-0001,35.71020,139.76120,イチョウ,Ginkgo biloba,2026-06-11,field-team,3,true,正門付近
+T-0002,35.71048,139.76172,ソメイヨシノ,Cerasus x yedoensis,2026-06-11,field-team,4,true,講義棟前
+T-0003,35.70996,139.76205,クスノキ,Cinnamomum camphora,2026-06-11,field-team,5,true,芝生広場の南側
+T-0004,35.71072,139.76092,ケヤキ,Zelkova serrata,2026-06-11,field-team,4,true,図書館西側
+T-0005,35.71008,139.76158,ヤマモミジ,Acer palmatum,2026-06-11,field-team,6,false,確認中のため非公開
+

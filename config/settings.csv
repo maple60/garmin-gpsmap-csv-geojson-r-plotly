@@ -1,0 +1,14 @@
+key,value
+site_title,大学樹木マップ
+site_subtitle,Garmin GPSMAPで記録したキャンパス内の樹木位置と樹種名
+source_csv_url,
+species_csv_url,
+sample_csv,data/source/sample_trees.csv
+sample_species_csv,data/source/sample_species.csv
+output_csv,data/public/trees.csv
+output_geojson,data/public/trees.geojson
+campus_min_lat,
+campus_max_lat,
+campus_min_lon,
+campus_max_lon,
+

@@ -1,0 +1,75 @@
+---
+title: "大学樹木マップ"
+format:
+  html:
+    page-layout: full
+    include-in-header:
+      text: |
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIINfQpGD1ZYNnrbB2JYjtmI3QDQ1e7W28="
+          crossorigin="">
+    include-after-body:
+      text: |
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+        <script src="assets/map.js"></script>
+---
+
+```{=html}
+<main class="tree-map-shell">
+  <section class="tree-map-header" aria-label="公開データの概要">
+    <div>
+      <p class="eyebrow">Campus Tree Inventory</p>
+      <h1>大学樹木マップ</h1>
+      <p class="lead">Garmin GPSMAPで記録したキャンパス内の樹木位置と樹種名を公開しています。</p>
+    </div>
+    <div class="status-strip" aria-live="polite">
+      <span><strong id="tree-count">0</strong> 本</span>
+      <span id="last-updated">更新確認中</span>
+    </div>
+  </section>
+
+  <section class="tree-map-toolbar" aria-label="樹木検索">
+    <label class="field">
+      <span>検索</span>
+      <input id="tree-search" type="search" placeholder="樹種名・学名・ID" autocomplete="off">
+    </label>
+    <label class="field">
+      <span>樹種</span>
+      <select id="species-filter">
+        <option value="">すべて</option>
+      </select>
+    </label>
+    <div class="download-links" aria-label="データダウンロード">
+      <a href="data/public/trees.csv">CSV</a>
+      <a href="data/public/trees.geojson">GeoJSON</a>
+    </div>
+  </section>
+
+  <section class="tree-map-grid">
+    <div id="map" class="map-canvas" aria-label="樹木位置図"></div>
+    <aside class="tree-panel" aria-label="樹木一覧">
+      <div class="panel-section">
+        <h2>凡例</h2>
+        <div id="legend" class="legend"></div>
+      </div>
+      <div class="panel-section table-section">
+        <h2>一覧</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>樹種</th>
+                <th>学名</th>
+              </tr>
+            </thead>
+            <tbody id="tree-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </aside>
+  </section>
+</main>
+```

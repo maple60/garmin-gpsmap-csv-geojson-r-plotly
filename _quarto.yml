@@ -1,0 +1,29 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - data/public/trees.csv
+    - data/public/trees.geojson
+    - assets/**
+
+website:
+  title: "大学樹木マップ"
+  navbar:
+    left:
+      - href: index.qmd
+        text: 地図
+      - href: data/public/trees.csv
+        text: CSV
+      - href: data/public/trees.geojson
+        text: GeoJSON
+
+format:
+  html:
+    theme: cosmo
+    css: assets/styles.css
+    toc: false
+    page-layout: full
+
+execute:
+  freeze: auto
+

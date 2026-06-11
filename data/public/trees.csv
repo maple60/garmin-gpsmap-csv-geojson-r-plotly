@@ -1,0 +1,5 @@
+"tree_id","lat","lon","species_jp","scientific_name","survey_date","observer","accuracy_m","publish","note_public","family_jp","marker_color"
+"T-0001",35.7102,139.7612,"イチョウ","Ginkgo biloba","2026-06-11","field-team",3,TRUE,"正門付近","イチョウ科","#c28b19"
+"T-0002",35.71048,139.76172,"ソメイヨシノ","Cerasus x yedoensis","2026-06-11","field-team",4,TRUE,"講義棟前","バラ科","#d95f8a"
+"T-0003",35.70996,139.76205,"クスノキ","Cinnamomum camphora","2026-06-11","field-team",5,TRUE,"芝生広場の南側","クスノキ科","#1f7a5a"
+"T-0004",35.71072,139.76092,"ケヤキ","Zelkova serrata","2026-06-11","field-team",4,TRUE,"図書館西側","ニレ科","#7a5a2a"

@@ -1,0 +1,11 @@
+Package: universitytreemap
+Title: University Tree Map Static Site
+Version: 0.1.0
+Authors@R:
+    person("Tree Map Maintainers", role = c("aut", "cre"), email = "noreply@example.com")
+Description: Builds validated CSV and GeoJSON outputs for a static campus tree map.
+License: MIT
+Encoding: UTF-8
+Depends:
+    R (>= 4.3.0)
+
