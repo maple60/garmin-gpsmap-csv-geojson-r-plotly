@@ -27,6 +27,12 @@ flowchart LR
 
 データ追加は、現地でGPS座標と樹種情報を記録し、Google Sheetsの `trees` シートに1行追加する流れです。GitHub上のCSVやGeoJSONは生成物なので、手で編集しません。
 
+初回だけ、入力用のGoogle SheetsとGitHub Actionsを接続します。Google Sheetsを新規作成し、`trees` と `species` という2つのシートを作ります。`trees` の列は `tree_id`, `lat`, `lon`, `species_jp`, `scientific_name`, `survey_date`, `observer`, `accuracy_m`, `publish`, `note_public` です。`species` の列は `species_jp`, `scientific_name`, `family_jp`, `marker_color`, `description` です。
+
+各シートはGoogle Sheetsの `ファイル > 共有 > ウェブに公開` から、シート単位で `カンマ区切り値（.csv）` として公開します。`trees` と `species` それぞれのCSV URLをコピーし、GitHubリポジトリの `Settings > Secrets and variables > Actions` で `TREES_CSV_URL` と `SPECIES_CSV_URL` というRepository secretとして登録します。
+
+登録後は `Actions > Publish tree map > Run workflow` を実行します。workflowは登録されたCSV URLからSheetsの内容を読み込み、Rで検証してから公開用CSV/GeoJSONとQuartoサイトを再生成し、GitHub Pagesへ反映します。
+
 調査前には、Garmin GPSMAPの測地系をWGS84にし、座標を10進度で記録できる状態にします。あわせて、その日の記録者名、個体IDの採番ルール、未確定データを `publish = FALSE` にする運用を確認します。
 
 現地では1本の木ごとに、個体ID、緯度、経度、樹種名、調査日、記録者、GPS精度、公開メモを記録します。樹種が未確定の場合や座標に不安がある場合は、Google Sheetsには入力しても `publish` を `FALSE` にしておき、確認後に `TRUE` へ変更します。

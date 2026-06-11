@@ -26,6 +26,35 @@ Garmin GPSMAPで取得した樹木の位置と樹種名を、Google Sheetsで管
 
 ## 現地調査から入力までの具体手順
 
+### 初回セットアップ: Google SheetsとGitHubをつなぐ
+
+最初に、入力用のGoogle Sheetsを1つ作り、その中に `trees` と `species` という2つのシートを作成します。シート名はRスクリプトが参照する名前なので、余分な空白や日本語名にせず、この通りにします。
+
+`trees` シートの1行目には、以下の列名をこの順で入れます。
+
+```text
+tree_id,lat,lon,species_jp,scientific_name,survey_date,observer,accuracy_m,publish,note_public
+```
+
+`species` シートの1行目には、以下の列名を入れます。`species_jp` 以外は空欄でも構いませんが、列自体は作っておくと運用しやすくなります。
+
+```text
+species_jp,scientific_name,family_jp,marker_color,description
+```
+
+`trees` には1本の木を1行として入力します。`species` には樹種ごとの学名、科名、マーカー色などをまとめます。`trees$scientific_name` が空欄でも、`species_jp` が `species` シートと一致すれば、学名やマーカー色を補完できます。
+
+Google Sheets側の準備ができたら、各シートをCSVとして公開します。Google Sheetsで `ファイル > 共有 > ウェブに公開` を開き、公開対象として `trees` シートを選び、形式に `カンマ区切り値（.csv）` を選んで公開し、表示されたURLをコピーします。同じ手順で `species` シートもCSVとして公開します。通常の共有リンクではなく、CSV形式でウェブ公開したURLを使う点に注意してください。
+
+GitHub側では、リポジトリの `Settings > Secrets and variables > Actions` を開き、`Repository secrets` に以下の2つを登録します。
+
+| Secret名 | 入れる値 |
+| --- | --- |
+| `TREES_CSV_URL` | `trees` シートをCSV公開したURL |
+| `SPECIES_CSV_URL` | `species` シートをCSV公開したURL |
+
+登録後、GitHubの `Actions` タブで `Publish tree map` を開き、`Run workflow` を押します。成功すると、GitHub ActionsがGoogle SheetsのCSVを読み込み、検証後に `data/public/trees.csv` と `data/public/trees.geojson` を生成し、GitHub Pagesへ反映します。以後はSheetsの内容を更新し、手動実行または定期実行を待つだけで公開サイトに反映されます。
+
 ### 調査前に準備するもの
 
 - Garmin GPSMAPの測地系をWGS84にします。
