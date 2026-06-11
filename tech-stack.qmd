@@ -10,7 +10,7 @@ title: "技術詳細"
 
 ## データフロー
 
-```mermaid
+```{mermaid}
 flowchart LR
   A["Garmin GPSMAP"] --> B["Google Sheets: trees"]
   C["Google Sheets: species"] --> D["GitHub Actions"]
